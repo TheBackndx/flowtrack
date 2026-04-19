@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const transactionSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: user,
+        ref: "users",
         required: true
     },
     type: {
@@ -28,7 +28,7 @@ const transactionSchema = new mongoose.Schema({
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: category,
+        ref: "categories",
         required: true
     },
     date: {
