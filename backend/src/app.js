@@ -6,7 +6,7 @@ require("dotenv").config()
 const authMiddleware = require("./middlewares/auth.middleware")
 const authRoutes = require("./routes/auth.route")
 const testRoutes = require("./routes/test.route")
-const transactionRoutes = require("./routes/transcation.route")
+const transactionRoutes = require("./routes/transaction.route")
 const categoryRoutes = require("./routes/category.route")
 
 app.use(express.json())

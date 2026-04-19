@@ -16,16 +16,35 @@ const addCategory = async (req, res) => {
         })
 
         res.status(201).json({
-            message : "New category created",
+            message: "New category created",
             category
         })
     }
     catch (e) {
         res.status(500).json({
-            note : "Category creation unsuccesfull",
-            message : e
+            note: "Category creation unsuccesfull",
+            message: e
         })
     }
 }
 
-module.exports = { addCategory }
+const getCategory = async (req, res) => {
+    try {
+        const categories = await categoryModel.find({
+            user: req.user.id
+        })
+
+        res.status(200).json({
+            message: "Fetch succesull",
+            categories
+        })
+    }
+    catch (e) {
+        res.status(200).json({
+            message: e.message,
+            note: "fetch failed"
+        })
+    }
+}
+
+module.exports = { addCategory, getCategory }

@@ -5,8 +5,6 @@ const transactionController = require("../controllers/transaction.controller")
 
 router.post("/", authMiddleware, transactionController.addTransaction)
 
-router.get("/", authMiddleware, (req, res) => {
-    res.send("Get transactions")
-})
+router.get("/", authMiddleware, transactionController.getTransaction)
 
 module.exports = router

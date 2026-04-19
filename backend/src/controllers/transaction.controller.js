@@ -22,10 +22,28 @@ const addTransaction = async (req, res) => {
     }
     catch (e) {
         return res.json({
-            note : "Transaction unsuccessfull",
+            note: "Transaction unsuccessfull",
             message: e
         })
     }
 }
 
-module.exports = { addTransaction }
+const getTransaction = async(req, res) => {
+    try {
+        const transactions = await transactionModel.find({
+            user: req.user.id,
+        }).populate("category")
+
+        res.status(200).json({
+            message: "fetch succesfull",
+            transactions
+        })
+    }
+    catch (e) {
+        res.status(500).json({
+            message: "Fetching failed"
+        })
+    }
+}
+
+module.exports = { addTransaction, getTransaction }
