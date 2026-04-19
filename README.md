@@ -1,4 +1,4 @@
-<img width="530" height="674" alt="image" src="https://github.com/user-attachments/assets/49a97188-f627-4efb-b3ba-2a4c8432ba3e" /># FlowTrack
+# FlowTrack
 
 A basic expense tracking application.
 
