@@ -1,6 +1,6 @@
 # FlowTrack
 
-A basic expense tracking application.
+An expense tracking application to manage personal finances.
 
 ---
 
