@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require("express")
 const dotenv = require("dotenv")
 const authRouter = require("./routes/auth.route")
 
 const app = express();
 
 dotenv.config()
-app.use(express.json());
+app.use(express.json())
 
 app.get("/", (req, res) => {
     res.send("Server is runing")
