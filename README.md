@@ -1,30 +1,54 @@
 # FlowTrack
 
-An expense tracking application to manage personal finances.
+FlowTrack is a full-stack personal finance tracker that helps users manage their income and expenses, categorize transactions, and get a clear summary of their financial activity.
 
 ---
 
 ## Features
 
-- User authentication
-- Create and manage categories
-- Add and view expenses
-- Data stored per user
+-  User authentication (JWT-based login & signup)
+-  Add income and expense transactions
+-  Create and manage custom categories
+-  View financial summary (total income, expense, balance)
+-  Transaction history with filtering
+-  Secure cookie-based authentication
 
 ---
 
-## Tech Stack
+##  How It Works
 
+- Users create an account and log in
+- They can add transactions (income/expense)
+- Each transaction is linked to a category
+- The system calculates:
+  - Total income
+  - Total expenses
+  - Remaining balance
+- Data is stored securely in MongoDB
+
+---
+
+##  Tech Stack
+
+**Frontend**
+- React
+- Tailwindcss
+
+**Backend**
 - Node.js
 - Express.js
-- MongoDB
+
+**Database**
+- MongoDB (Mongoose)
+
+**Authentication**
+- JWT (JSON Web Tokens)
+- HTTP-only cookies
 
 ---
 
-## Setup
+##  Live Demo
 
-```
-git clone https://github.com/thebackndx/flowtrack
-cd flowtrack
-npm install
-node index.js
+👉 https://flowtrack-beige.vercel.app/
+
+---
