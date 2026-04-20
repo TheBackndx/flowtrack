@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const categoryModel = require("../models/category.model")
-const transactionModel= require("../models/transaction.model")
+const transactionModel = require("../models/transaction.model")
 
 const addCategory = async (req, res) => {
     try {
@@ -50,44 +50,92 @@ const getCategory = async (req, res) => {
 }
 
 const deleteCategory = async (req, res) => {
-    try{
+    try {
         const categoryID = req.params.id
 
-        if(!mongoose.Types.ObjectId.isValid(categoryID)) {
+        if (!mongoose.Types.ObjectId.isValid(categoryID)) {
             return res.status(400).json({
-                message : "Invalid category ID"
+                message: "Invalid category ID"
             })
         }
 
         const category = await categoryModel.findOne({
-            _id : categoryID,
-            user : req.user.id
+            _id: categoryID,
+            user: req.user.id
         })
 
-        if(!category) {
+        if (!category) {
             return res.status(404).json({
-                message : "Category not found"
+                message: "Category not found"
             })
         }
 
         const transaction = await transactionModel.deleteMany({
-            category : categoryID,
-            user : req.user.id
+            category: categoryID,
+            user: req.user.id
         })
 
         await categoryModel.findByIdAndDelete(categoryID)
 
         res.status(200).json({
-            message : `Category and related ${transaction.deletedCount} transaction deleted`
+            message: `Category and related ${transaction.deletedCount} transaction deleted`
         })
 
     }
-    catch(e){
+    catch (e) {
         res.status(500).json({
-            note : "Message deletion failed",
-            message : e.message
+            note: "Message deletion failed",
+            message: e.message
         })
     }
 }
 
-module.exports = { addCategory, getCategory, deleteCategory }
+const updateCategoryName = async (req, res) => {
+    try {
+        const categoryID = req.params.id
+
+        if (!mongoose.Types.ObjectId.isValid(categoryID)) {
+            return res.status(400).json({
+                message: "Invalid ID"
+            })
+        }
+
+        const name = req.body.name
+
+        if (!name) {
+            return res.status(400).json({
+                message: "Name is required"
+            })
+        }
+
+        const updated = await categoryModel.findOneAndUpdate(
+            { _id: categoryID, user: req.user.id },
+            { name }, { returnDocument: "after" }
+        )
+
+        if (!updated) {
+            return res.status(404).json({
+                message: "category not found"
+            })
+        }
+
+        res.status(200).json({
+            message: "Category updated successfully",
+            category: updated
+        })
+    }
+    catch (e) {
+        if (e.code === 11000) {
+            return res.status(400).json({
+                message: "Category name already exists"
+            })
+        } else {
+            console.log(e)
+            return res.status(500).json({
+                message: "Update failed"
+            })
+        }
+    }
+}
+
+module.exports = { addCategory, getCategory, deleteCategory, updateCategoryName }

@@ -9,4 +9,6 @@ router.get("/", authMiddleware, categoryController.getCategory)
 
 router.delete("/:id", authMiddleware, categoryController.deleteCategory)
 
+router.patch("/:id", authMiddleware, categoryController.updateCategoryName)
+
 module.exports = router
