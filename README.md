@@ -52,3 +52,14 @@ FlowTrack is a full-stack personal finance tracker that helps users manage their
 👉 https://flowtrack-beige.vercel.app/
 
 ---
+
+## AI Usage
+
+This project used AI tools (like ChatGPT) for:
+
+- Debugging backend issues and fixing errors
+- Understanding concepts like JWT, cookies, and MongoDB
+- Structuring API routes, controllers, and database logic
+- Assistance in designing and improving the UI layout and user experience
+
+All final implementation, decisions, and understanding were done by me.
